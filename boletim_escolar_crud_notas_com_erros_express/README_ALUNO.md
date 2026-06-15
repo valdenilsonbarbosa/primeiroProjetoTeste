@@ -18,19 +18,19 @@ O sistema permite:
 1. Extraia o arquivo ZIP.
 2. Abra a pasta do projeto no VS Code.
 3. Abra o terminal dentro da pasta do projeto.
-4. Instale as dependências:
-
+4. Inicializar o node
 ```bash
 npm init -y
 ```
 
-5. Execute o servidor:
+
+5. Instale as dependências:
 
 ```bash
 npm install express
 ```
 
-Ou:
+5. Execute o servidor:
 
 ```bash
 node server.js
@@ -39,7 +39,7 @@ node server.js
 6. Abra o navegador e acesse:
 
 ```text
-http://localhost:3000
+http://localhost:5000
 ```
 
 ## Atenção
