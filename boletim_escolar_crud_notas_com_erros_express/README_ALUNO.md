@@ -21,13 +21,13 @@ O sistema permite:
 4. Instale as dependências:
 
 ```bash
-npm install
+npm init -y
 ```
 
 5. Execute o servidor:
 
 ```bash
-npm start
+npm install express
 ```
 
 Ou:
