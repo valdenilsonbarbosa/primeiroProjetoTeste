@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Boletim Escolar - Teste de Software</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="topo">
+    <div>
+      <p class="tag">Atividade prática de teste de software</p>
+      <h1>Boletim Escolar</h1>
+      <p>CRUD de alunos e lançamento de notas por matéria.</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="card aviso">
+      <h2>Orientação para a turma</h2>
+      <p>Este sistema será usado para testar funcionalidades. Cadastre alunos, lance notas, edite, exclua, filtre e gere boletins. Registre tudo no roteiro de testes.</p>
+    </section>
+
+    <section class="card">
+      <div class="card-titulo">
+        <h2>1. Cadastro de Alunos</h2>
+        <p>Cadastre o aluno informando nome, escola e série.</p>
+      </div>
+
+      <form id="formAluno" class="form-grid">
+        <input type="hidden" id="alunoId">
+
+        <label>
+          Nome do aluno
+          <input type="text" id="nome" placeholder="Ex.: Maria Silva">
+        </label>
+
+        <label>
+          Escola
+          <input type="text" id="escola" placeholder="Ex.: Escola Modelo">
+        </label>
+
+        <label>
+          Série
+          <select id="serie">
+            <option value="">Selecione</option>
+            <option value="1º Ano">1º Ano</option>
+            <option value="2º Ano">2º Ano</option>
+            <option value="3º Ano">3º Ano</option>
+          </select>
+        </label>
+
+        <div class="acoes-form">
+          <button type="submit" class="btn principal">Salvar aluno</button>
+          <button type="button" class="btn neutro" id="btnCancelarAluno">Cancelar edição</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="card">
+      <div class="card-titulo linha">
+        <div>
+          <h2>2. Lista de Alunos</h2>
+          <p>Visualize todos os alunos ou filtre por série.</p>
+        </div>
+
+        <label class="filtro">
+          Filtrar por série
+          <select id="filtroSerie">
+            <option value="">Todas</option>
+            <option value="1º Ano">1º Ano</option>
+            <option value="2º Ano">2º Ano</option>
+            <option value="3º Ano">3º Ano</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="tabela-responsiva">
+        <table>
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>Escola</th>
+              <th>Série</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody id="corpoTabelaAlunos"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="card destaque">
+      <div class="card-titulo">
+        <h2>3. CRUD de Notas por Aluno e Matéria</h2>
+        <p>Escolha o aluno, selecione a matéria e lance as quatro notas.</p>
+      </div>
+
+      <form id="formNota" class="form-grid notas-grid">
+        <input type="hidden" id="notaId">
+
+        <label>
+          Aluno
+          <select id="notaAluno"></select>
+        </label>
+
+        <label>
+          Matéria
+          <select id="materia"></select>
+        </label>
+
+        <label>
+          Nota 1
+          <input type="number" id="nota1" min="0" max="10" step="0.1" placeholder="0 a 10">
+        </label>
+
+        <label>
+          Nota 2
+          <input type="number" id="nota2" min="0" max="10" step="0.1" placeholder="0 a 10">
+        </label>
+
+        <label>
+          Nota 3
+          <input type="number" id="nota3" min="0" max="10" step="0.1" placeholder="0 a 10">
+        </label>
+
+        <label>
+          Nota 4
+          <input type="number" id="nota4" min="0" max="10" step="0.1" placeholder="0 a 10">
+        </label>
+
+        <div class="acoes-form full">
+          <button type="submit" class="btn principal">Salvar notas</button>
+          <button type="button" class="btn neutro" id="btnCancelarNota">Cancelar edição</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="card">
+      <div class="card-titulo linha">
+        <div>
+          <h2>4. Notas Cadastradas</h2>
+          <p>Edite ou exclua registros de notas cadastradas.</p>
+        </div>
+
+        <label class="filtro">
+          Filtrar matéria
+          <select id="filtroMateria">
+            <option value="">Todas</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="tabela-responsiva">
+        <table>
+          <thead>
+            <tr>
+              <th>Aluno</th>
+              <th>Série</th>
+              <th>Matéria</th>
+              <th>Notas</th>
+              <th>Média</th>
+              <th>Status</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody id="corpoTabelaNotas"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="card boletim">
+      <div class="card-titulo linha">
+        <div>
+          <h2>5. Boletim do Aluno</h2>
+          <p>Selecione um aluno para visualizar as notas por matéria, média e status.</p>
+        </div>
+
+        <label class="filtro">
+          Aluno
+          <select id="boletimAluno"></select>
+        </label>
+      </div>
+
+      <div id="areaBoletim" class="area-boletim vazio">
+        Selecione um aluno para gerar o boletim.
+      </div>
+    </section>
+  </main>
+
+  <div id="mensagem" class="mensagem"></div>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
